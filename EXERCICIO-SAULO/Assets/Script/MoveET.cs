@@ -1,38 +1,45 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    
-    public float velocidade = 40;
-    public float forcaDoPulo = 4;
-    
-    private SpriteRenderer sprite;
+    public float velocidade = 5f;
+    public float forcaPulo = 7f;
+    private bool noChao;
+
     private Rigidbody2D rb;
-    
-       void Start()
-       {
-           sprite = GetComponent<SpriteRenderer>();
-           rb = GetComponent<Rigidbody2D>();
-       }
 
-   void Update()
+    void Start()
     {
-        if (Input.GetKey(KeyCode.A))
-        {
-            gameObject.transform.position += new Vector3(-velocidade * Time.deltaTime,0,0);
-            sprite.flipX = true;
-        }
-        
-        if (Input.GetKey(KeyCode.D))
-        {
-            gameObject.transform.position += new Vector3(velocidade * Time.deltaTime,0,0);
-            sprite.flipX = false;
-        }
+        rb = GetComponent<Rigidbody2D>();
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.AddForce(new Vector2(0,forcaDoPulo), ForceMode2D.Impulse);
-        }
+    void Update()
+    {
+        // Movimento horizontal
+        float movimento = Input.GetAxis("Horizontal");
+        rb.linearVelocity = new Vector2(movimento * velocidade, rb.linearVelocity.y);
 
+        // Pulo
+        if (Input.GetButtonDown("Jump") && noChao)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, forcaPulo);
+        }
+    }
+
+    // Detecta se está no chão
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Chao"))
+        {
+            noChao = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Chao"))
+        {
+            noChao = false;
+        }
     }
 }

@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 64492137}
   m_Layer: 0
   m_Name: arvore death
-  m_TagString: Untagged
+  m_TagString: Perigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b81acd944ddae40b5d75f0b696049b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tagPerigosa: Perigo
 --- !u!483693784 &64492135
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -350,10 +351,10 @@ Tilemap:
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 12
-    m_Data: {fileID: 11400000, guid: d0ed5fef9b8caa7488f36cc350b26b89, type: 2}
+    m_Data: {fileID: 11400000, guid: 4a0df35603efaf447a30f64457a177db, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 12
-    m_Data: {fileID: 481845847, guid: 9b290eab08508c64d9dccc1b7c7f9066, type: 3}
+    m_Data: {fileID: -1246200225, guid: 9b290eab08508c64d9dccc1b7c7f9066, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 12
     m_Data:
@@ -12251,6 +12252,7 @@ GameObject:
   - component: {fileID: 996385249}
   - component: {fileID: 996385248}
   - component: {fileID: 996385247}
+  - component: {fileID: 996385253}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -12271,7 +12273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidade: 15
-  forcaDoPulo: 6
+  forcaPulo: 10
 --- !u!50 &996385248
 Rigidbody2D:
   serializedVersion: 5
@@ -12438,6 +12440,19 @@ Transform:
   - {fileID: 889601126}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &996385253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996385246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21b81acd944ddae40b5d75f0b696049b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagPerigosa: Perigo
 --- !u!1 &1150615093
 GameObject:
   m_ObjectHideFlags: 0
@@ -12781,7 +12796,7 @@ GameObject:
   - component: {fileID: 1342782204}
   m_Layer: 0
   m_Name: chao
-  m_TagString: Untagged
+  m_TagString: Chao
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

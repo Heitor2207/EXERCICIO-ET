@@ -7,6 +7,9 @@ public class PlayerDeath : MonoBehaviour
     private Rigidbody2D rb;
     private bool isDead = false;
 
+    // Nome da tag do objeto que mata
+    public string tagPerigosa = "Perigo";
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -15,19 +18,18 @@ public class PlayerDeath : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!isDead)
+        // Só morre se encostar no objeto com a tag definida
+        if (!isDead && collision.gameObject.CompareTag(tagPerigosa))
         {
             isDead = true;
 
-            // Para movimento
             rb.linearVelocity = Vector2.zero;
             rb.gravityScale = 0;
 
-            // Animação de morte
-            animator.SetTrigger("Die");
+            if (animator != null)
+                animator.SetTrigger("Die");
 
-            // Reinicia o jogo após 1.5 segundos
-            Invoke("RestartGame", 1.5f);
+            Invoke(nameof(RestartGame), 0.3f);
         }
     }
 
